@@ -1,150 +1,62 @@
-# 🌱 Humanity OS — Open Source Resource Hub
+# 🌱 Humanity OS — Vanilla HTML Version
 
-> **The Operating System for an Abundant World**
+https://l10n-h34r7.github.io/humanity-os-resource-hub/
 
-A central hub connecting open source technology, permaculture, collective living, off-grid solutions, and post-monetary economics. Everything you need to start building the alternative — not by fighting, but by creating.
+This is the **simple vanilla HTML/CSS/JS version** of Humanity OS.
 
-🌐 **Live site:** [l10n-h34r7.github.io/humanity-os-resource-hub](https://l10n-h34r7.github.io/humanity-os-resource-hub/)
+## Why Vanilla?
 
----
+- ✅ **Zero build step** — just upload files
+- ✅ **Easy to edit** — anyone can add resources
+- ✅ **Lightweight** — single file ~50KB
+- ✅ **Works everywhere** — any browser, any server
 
-## 💡 What Is Humanity OS?
+## Deployment
 
-Humanity OS is the idea that we can live together in an abundant world without money, in anarcho-collective ways. We already have all the knowledge — what's missing are the **links** between crucial information so people realise this is not utopia.
+### Option 1: GitHub Pages (simplest)
 
-This resource hub is a **starter pack / seed** — connecting:
+1. Create a new repo or use existing
+2. Upload `index.html` to the root
+3. Go to **Settings → Pages**
+4. Source: **Deploy from branch** → `main` → `/ (root)`
+5. Done! Live at `yourusername.github.io/reponame`
 
-- 🔧 **Open source hardware** — machines anyone can build (Open Source Ecology, Precious Plastic, FarmBot...)
-- 🏗️ **Low-tech solutions** — simple, durable, repairable technology (Low-tech Lab, Earthship...)
-- 🌿 **Permaculture & regenerative agriculture** — working with nature (WWOOF, seed saving, food forests...)
-- 🏘️ **Collectives & ecovillages** — communities already living it (Auroville, Marinaleda, Zapatistas, Calafou...)
-- ⚖️ **Legal frameworks** — how to own land collectively in different countries (CLTs, syndicates, co-ops...)
-- 🤝 **Gift economy & moneyless living** — alternatives to money (Buy Nothing, timebanking, mutual aid...)
-- 🌍 **Funding & land access** — getting started without being rich (crowdfunding, community shares, foundations...)
-- ☀️ **Off-grid energy** — solar, wind, biogas open source designs
-- 📚 **Education & media** — documentaries, books, libraries, manifestos
-- 🤖 **Open source digital tools** — AI, communication, governance platforms
-- 🗺️ **Maps & directories** — find communities and projects near you
+### Option 2: Any web host
 
----
+Just upload `index.html`. That's it.
 
-## 🚀 Starter Packs
+## How to Add Resources
 
-The site includes 4 guided paths depending on where you are:
+1. Open `index.html` in any text editor
+2. Find the category section (search for `id="tech"`, `id="collectives"`, etc.)
+3. Copy an existing resource block:
 
-| Pack | For whom | First step |
-|------|----------|------------|
-| 🌱 **Seed Pack** | Solo beginner | Learn permaculture principles, volunteer at a farm |
-| 🏡 **Homestead Pack** | Small group (3-10) | Define values, research legal structures, access land |
-| 🌍 **Village Pack** | Building community (10+) | Study existing models, join GEN, set up collective ownership |
-| 💻 **Digital Nomad Pack** | Remote contributors | Contribute to open source, document projects, build tools |
-
----
-
-## 🛠️ Tech Stack
-
-This is a **React + Vite + Tailwind CSS** project that builds into a **single HTML file**.
-
-| What | Why |
-|------|-----|
-| React | Component structure for 100+ resources |
-| Vite | Fast builds |
-| Tailwind CSS | Styling without separate CSS files |
-| vite-plugin-singlefile | Everything compiles into one `index.html` |
-| GitHub Actions | Automatic build & deploy on every push |
-
-### How the build works
-
-```
-Your code (React/JSX)
-    ↓  npm run build
-Single index.html file (in dist/)
-    ↓  GitHub Actions
-Live on GitHub Pages
+```html
+<div class="resource" data-tags="your tags here">
+  <div class="resource-title">
+    <a href="https://example.com" target="_blank">Resource Name</a>
+    <span class="resource-type">project</span>
+  </div>
+  <p class="resource-desc">Short description here.</p>
+  <div class="resource-tags"><span>tag1</span><span>tag2</span></div>
+</div>
 ```
 
-You **never need to run the build locally** — GitHub Actions does it automatically when you push.
+4. Edit the values
+5. Commit and push
 
----
+## Resource Types
 
-## 📝 How to Contribute
+Use one of these for `resource-type`:
+- `project` — Open source projects
+- `community` — Communities, networks, collectives
+- `legal` — Legal frameworks, CLTs, co-ops
+- `tool` — Tools and platforms
+- `education` — Books, courses, theory
+- `video` — Films, documentaries, video courses
+- `map` — Maps and directories
+- `library` — Wikis, collections, resource libraries
 
-### Adding a resource (easiest — no coding needed)
+## License
 
-1. [Open an issue](https://github.com/l10n-h34r7/humanity-os-resource-hub/issues/new) with:
-   - Resource name & URL
-   - Short description
-   - Which category it belongs to
-   - Any tags
-
-### Editing resources directly
-
-Resources live in one file: **`src/data/resources.ts`**
-
-Each resource looks like this:
-```typescript
-{
-  title: 'Open Source Ecology',
-  url: 'https://www.opensourceecology.org/',
-  description: 'Global Village Construction Set — 50 open source machines.',
-  tags: ['hardware', 'machines', 'self-sufficiency'],
-  type: 'project',  // project | community | legal | tool | education | video | map | library
-}
-```
-
-To add one: find the right category array, copy-paste a resource block, edit it, submit a PR.
-
-### Running locally (optional)
-
-```bash
-git clone https://github.com/l10n-h34r7/humanity-os-resource-hub.git
-cd humanity-os-resource-hub
-npm install
-npm run dev     # opens at localhost:5173
-```
-
----
-
-## 🚀 Deployment
-
-This site auto-deploys via GitHub Actions. The workflow (`.github/workflows/deploy.yml`) does:
-
-1. Checks out code
-2. Installs dependencies (`npm ci`)
-3. Builds (`npm run build`)
-4. Deploys `dist/` folder to GitHub Pages
-
-### First-time setup
-
-1. Go to your repo **Settings → Pages**
-2. Under **Source**, select **"GitHub Actions"**
-3. Push to `main` — the workflow runs automatically
-4. Your site will be live at `https://l10n-h34r7.github.io/humanity-os-resource-hub/`
-
-That's it. Every future push to `main` will rebuild and redeploy automatically.
-
----
-
-## 🗺️ Inspired By
-
-- [Ecoclash](https://ecoclash.jimdofree.com/) — Map of alternative living spaces
-- [Appropedia](https://www.appropedia.org/) — The sustainability wiki
-- [P2P Foundation](https://wiki.p2pfoundation.net/) — Commons encyclopedia
-- [Global Ecovillage Network](https://ecovillage.org/) — Ecovillage map & directory
-
----
-
-## 📜 License
-
-**[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)** — Share freely, remix freely, keep it open.
-
-No copyright. Only copyleft. 💚
-
----
-
-## 🌍 The Vision
-
-> *"Another world is not only possible, she is on her way. On a quiet day, I can hear her breathing."*
-> — Arundhati Roy
-
-Every link shared is a seed planted. Every fork is a new garden. 🌱
+CC BY-SA 4.0 — Share freely, keep it open.
