@@ -1,5 +1,7 @@
 # 🌱 Humanity OS — Vanilla HTML Version
 
+https://l10n-h34r7.github.io/humanity-os-resource-hub/
+
 This is the **simple vanilla HTML/CSS/JS version** of Humanity OS.
 
 ## Why Vanilla?
