@@ -8,7 +8,7 @@ Humanity OS (Humanity Operating System / Humanity Open Source) is the idea that 
 
 This is a central hub connecting open source projects, real-world collectives, legal frameworks, and starter packs proving that another world is not utopia — **it already exists**.
 
-🔗 **Live site:** [View on GitHub Pages](#) *(update with your URL)*
+🔗 **Live site:** [View on GitHub Pages]([#](https://l10n-h34r7.github.io/humanity-os-resource-hub/)) *(update with your URL)*
 
 ---
 
