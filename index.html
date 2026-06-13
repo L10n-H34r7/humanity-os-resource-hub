@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Humanity OS — Open Source Resource Hub</title>
+  <meta name="description" content="Central hub for open source, permaculture, collective living, and post-monetary economics. Seeds for an abundant world.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌱</text></svg>">
+  
+  <!-- OG Meta -->
+  <meta property="og:title" content="Humanity OS — Open Source Resource Hub">
+  <meta property="og:description" content="100+ curated resources for building an abundant world without money.">
+  <meta property="og:url" content="https://l10n-h34r7.github.io/humanity-os-resource-hub/">
+  <meta property="og:type" content="website">
+  
+  <style>
+    :root {
+      --bg: #f5f0e8;
+      --bg-card: #ffffff;
+      --text: #1a1a1a;
+      --text-muted: #555;
+      --accent: #2d7a4f;
+      --accent-light: #e8f5ed;
+      --border: #ddd;
+      --header-bg: #1a3a2a;
+      --header-text: #fff;
+      --sun: #e6a000;
+    }
+    
+    [data-theme="dark"] {
+      --bg: #121212;
+      --bg-card: #1e1e1e;
+      --text: #e8e8e8;
+      --text-muted: #aaa;
+      --accent: #4ade80;
+      --accent-light: #1a3a2a;
+      --border: #333;
+      --header-bg: #0a0a0a;
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+    
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    
+    /* Header */
+    header {
+      background: var(--header-bg);
+      color: var(--header-text);
+      padding: 0.75rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    
+    .logo { display: flex; align-items: center; gap: 0.5rem; }
+    .logo span { font-size: 1.5rem; }
+    .logo h1 { font-size: 1rem; font-weight: 700; }
+    .logo h1 em { color: var(--accent); font-style: normal; }
+    
+    .header-controls { display: flex; align-items: center; gap: 0.75rem; }
+    
+    #theme-toggle {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.3);
+      color: var(--header-text);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.8rem;
+    }
+    
+    .gh-link {
+      color: var(--header-text);
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+    .gh-link:hover { opacity: 1; }
+    
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--header-bg) 0%, #2a5a3a 100%);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    
+    .hero h2 {
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .hero p {
+      max-width: 600px;
+      margin: 0 auto 1rem;
+      opacity: 0.9;
+      font-size: 0.95rem;
+    }
+    
+    .hero-cta {
+      display: inline-block;
+      background: var(--sun);
+      color: #000;
+      padding: 0.5rem 1.25rem;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .hero-cta:hover { text-decoration: none; opacity: 0.9; }
+    
+    /* Search */
+    .search-wrap {
+      max-width: 600px;
+      margin: -1rem auto 1rem;
+      padding: 0 1rem;
+      position: relative;
+    }
+    
+    #search {
+      width: 100%;
+      padding: 0.6rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.9rem;
+      background: var(--bg-card);
+      color: var(--text);
+    }
+    
+    /* Main layout */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+    
+    /* Quick nav */
+    .quick-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.5rem;
+      justify-content: center;
+    }
+    
+    .quick-nav a {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      white-space: nowrap;
+    }
+    .quick-nav a:hover {
+      background: var(--accent-light);
+      text-decoration: none;
+    }
+    
+    /* Starter Packs */
+    .starter-section {
+      background: var(--accent-light);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .starter-section h3 {
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .starter-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 0.75rem;
+    }
+    
+    .starter-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.75rem;
+    }
+    
+    .starter-card h4 {
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .starter-card ol {
+      font-size: 0.8rem;
+      padding-left: 1.25rem;
+      color: var(--text-muted);
+    }
+    
+    .starter-card li { margin-bottom: 0.25rem; }
+    .starter-card a { font-weight: 500; }
+    
+    /* Category */
+    .category {
+      margin-bottom: 1.5rem;
+    }
+    
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--accent);
+    }
+    
+    .category-header h3 {
+      font-size: 1rem;
+      flex: 1;
+    }
+    
+    .category-toggle {
+      background: none;
+      border: 1px solid var(--border);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+    
+    /* Resource grid */
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 0.5rem;
+    }
+    
+    .resource {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.6rem 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    
+    .resource:hover {
+      border-color: var(--accent);
+    }
+    
+    .resource-title {
+      font-weight: 600;
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    
+    .resource-title a { flex: 1; }
+    
+    .resource-type {
+      font-size: 0.65rem;
+      background: var(--accent-light);
+      color: var(--accent);
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+    
+    .resource-desc {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+    
+    .resource-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+      margin-top: 0.25rem;
+    }
+    
+    .resource-tags span {
+      font-size: 0.6rem;
+      background: var(--bg);
+      padding: 0.1rem 0.35rem;
+      border-radius: 3px;
+      color: var(--text-muted);
+    }
+    
+    /* Hidden by search */
+    .resource.hidden { display: none; }
+    .category.hidden { display: none; }
+    
+    /* Footer */
+    footer {
+      background: var(--header-bg);
+      color: var(--header-text);
+      padding: 1.5rem 1rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+    
+    footer p { font-size: 0.8rem; opacity: 0.8; margin-bottom: 0.5rem; }
+    footer a { color: var(--accent); }
+    
+    /* Back to top */
+    #back-top {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      background: var(--accent);
+      color: white;
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    
+    #back-top.show { display: block; }
+    
+    /* Responsive */
+    @media (max-width: 600px) {
+      .hero h2 { font-size: 1.4rem; }
+      .resource-grid { grid-template-columns: 1fr; }
+      .starter-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <span>🌱</span>
+      <h1>Humanity <em>OS</em></h1>
+    </div>
+    <div class="header-controls">
+      <button id="theme-toggle">🌙 Dark</button>
+      <a href="https://github.com/l10n-h34r7/humanity-os-resource-hub" class="gh-link" target="_blank">GitHub ↗</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h2>The Operating System for an Abundant World</h2>
+    <p>We have all the knowledge. What's missing are the links. 100+ curated resources for open source living, collective ownership, and post-monetary economics.</p>
+    <a href="#starter-packs" class="hero-cta">🚀 Start Here</a>
+  </section>
+
+  <div class="search-wrap">
+    <input type="text" id="search" placeholder="Search resources... (solar, land trust, France, permaculture...)">
+  </div>
+
+  <main>
+    <!-- Quick Nav -->
+    <nav class="quick-nav">
+      <a href="#tech">🔧 Open Source Tech</a>
+      <a href="#lowtech">🏗️ Low-Tech</a>
+      <a href="#permaculture">🌿 Permaculture</a>
+      <a href="#collectives">🏘️ Collectives</a>
+      <a href="#legal">⚖️ Legal</a>
+      <a href="#moneyless">🤝 Beyond Money</a>
+      <a href="#funding">🌍 Funding & Land</a>
+      <a href="#energy">☀️ Off-Grid Energy</a>
+      <a href="#water">💧 Water Systems</a>
+      <a href="#education">📚 Education</a>
+      <a href="#tools">🤖 Digital Tools</a>
+      <a href="#maps">🗺️ Maps</a>
+    </nav>
+
+    <!-- Starter Packs -->
+    <section class="starter-section" id="starter-packs">
+      <h3>🚀 Starter Packs — Actionable First Steps</h3>
+      <div class="starter-grid">
+        <div class="starter-card">
+          <h4>🌱 Solo Beginner</h4>
+          <ol>
+            <li>Learn permaculture: <a href="https://permacultureprinciples.com/" target="_blank">12 Principles</a></li>
+            <li>Volunteer at farms for free: <a href="https://wwoof.net/" target="_blank">WWOOF</a></li>
+            <li>Join local gift economy: <a href="https://buynothingproject.org/" target="_blank">Buy Nothing</a></li>
+            <li>Find communities near you: <a href="https://www.ic.org/directory/" target="_blank">ic.org</a></li>
+          </ol>
+        </div>
+        <div class="starter-card">
+          <h4>🏡 Small Group (3-10)</h4>
+          <ol>
+            <li>Decide together: <a href="https://www.loomio.com/" target="_blank">Loomio</a></li>
+            <li>Research legal structures: <a href="#legal">CLTs, co-ops ↓</a></li>
+            <li>Access land: <a href="https://www.accesstoland.eu/" target="_blank">Access to Land EU</a></li>
+            <li>Build with open source: <a href="https://www.wikihouse.cc/" target="_blank">WikiHouse</a></li>
+          </ol>
+        </div>
+        <div class="starter-card">
+          <h4>🌍 Building Community (10+)</h4>
+          <ol>
+            <li>Study models: <a href="https://www.tamera.org/" target="_blank">Tamera</a>, <a href="https://www.twinoaks.org/" target="_blank">Twin Oaks</a></li>
+            <li>Join the network: <a href="https://ecovillage.org/" target="_blank">Global Ecovillage Network</a></li>
+            <li>German housing model: <a href="https://www.syndikat.org/" target="_blank">Mietshäuser Syndikat</a></li>
+            <li>Build machines: <a href="https://www.opensourceecology.org/" target="_blank">Open Source Ecology</a></li>
+          </ol>
+        </div>
+        <div class="starter-card">
+          <h4>💻 Remote Contributor</h4>
+          <ol>
+            <li>Open source projects: <a href="https://github.com/topics/permaculture" target="_blank">GitHub permaculture</a></li>
+            <li>Document knowledge: <a href="https://www.appropedia.org/" target="_blank">Appropedia</a></li>
+            <li>Run local AI: <a href="https://ollama.com/" target="_blank">Ollama</a></li>
+            <li>Map resources: <a href="https://www.openstreetmap.org/" target="_blank">OpenStreetMap</a></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORIES -->
+
+    <!-- Open Source Tech -->
+    <section class="category" id="tech">
+      <div class="category-header">
+        <span>🔧</span>
+        <h3>Open Source Technology & Hardware</h3>
+        <button class="category-toggle" onclick="toggleCategory(this)">collapse</button>
+      </div>
+      <div class="resource-grid">
+        <div class="resource" data-tags="hardware machines self-sufficiency">
+          <div class="resource-title">
+            <a href="https://www.opensourceecology.org/" target="_blank">Open Source Ecology (GVCS)</a>
+            <span class="resource-type">project</span>
+          </div>
+          <p class="resource-desc">50 industrial machines for self-sustaining civilization. Open blueprints for tractors, 3D printers, CNC mills.</p>
+          <div class="resource-tags"><span>hardware</span><span>machines</span><span>self-sufficiency</span></div>
+        </div>
+        <div class="resource" data-tags="recycling plastic machines">
+          <div class="resource-title">
+            <a href="https://preciousplastic.com/" target="_blank">Precious Plastic</a>
+            <span class="resource-type">project</span>
+          </div>
+          <p class="resource-desc">Open source machines for plastic recycling anywhere. Build shredder, extruder, injection molder.</p>
+          <div class="resource-tags"><span>recycling</span><span>plastic</span><span>machines</span></div>
+        </div>
+        <div class="resource" data-tags="farming automation cnc">
+          <div class="resource-title">
+            <a href="https://farm.bot/" target="_blank">FarmBot</a>
+            <span class="resource-type">project</span>
+          </div>
+          <p class="resource-desc">Open source CNC precision farming robot. Automate your garden with open hardware.</p>
+          <div class="resource-tags"><span>farming</span><span>automation</span><span>CNC</span></div>
+        </div>
+        <div class="resource" data-tags="housing architecture cnc">
+          <div class="resource-title">
+            <a href="https://www.wikihouse.cc/" target="_blank">WikiHouse</a>
+            <span class="resource-type">project</span>
+          </div>
+          <p class="resource-desc">Open source building system. CNC-cut your own house from plywood.</p>
+          <div class="resource-tags"><span>housing</span><span>architecture</span><span>CNC</span></div>
+        </div>
+        <div class="resource" data-tags="3d-printing self-replication manufacturing">
+          <div class="resource-title">
+            <a href="https://reprap.org/" target="_blank">RepRap Project</a>
+            <span class="resource-type">project</span>
+          </div>
+          <p class="resource-desc">Self-replicating 3D printer that can print most of its own parts.</p>
+          <div class="resource-tags"><span>3D-printing</span><span>manufacturing</span></div>
+        </div>
+        <div class="resource" data-tags="farming tools community france">
+          <div class="resource-title">
+            <a href="https://latelierpaysan.org/" target="_blank">L'Atelier Paysan</a>
+            <span class="resource-type">community</span>
+          </div>
+          <p class="resource-desc">French cooperative designing open source farm tools. Tutorials, trainings, tool library.</p>
+          <div class="resource-tags"><span>farming</span><span>tools</span><span>France</span></div>
+        </div>
+        <div class="resource" data-tags="farming tools community">
+          <div class="resource-title">
+            <a href="https://farmhack.org/" target="_blank">Farm Hack</a>
+            <span class="resource-type">community</span>
+          </div>
+          <p class="resource-desc">Worldwide farmers building and modifying their own tools. Open source farm tool library.</p>
+          <div class="resource-tags"><span>farming</span><span>tools</span><span>community</span></div>
+        </div>
+        <div class="resource" data-tags="list hardware curated">
+          <div class="resource-title">
+            <a href="https://github.com/delftopenhardware/awesome-open-hardware" target="_blank">Awesome Open Hardware</a>
+            <span class="resource-type">library</span>
+          </div>
+          <p class="resource-desc">Curated list of open source hardware — microscopes to satellites.</p>
+          <div class="resource-tags"><span>list</span><span>hardware</span><span>GitHub</span></div>
+        </div>
+        <div class="resource" data-tags="bees monitoring cnc">
+          <div class="resource-title">
+            <a href="https://opensourcebeehives.net/" target="_blank">Open Source Beehives</a>
+            <span class="resource-type">project</span>
+          </div>
+          <p class="resource-desc">CNC-milled beehive designs with smart sensor monitoring.</p>
+          <div class="resource-tags"><span>bees</span><span>monitoring</span></div>
+        </div>
+        <div class="resource" data-tags="energy monitoring iot">
+          <div class="resource-title">
+            <a href="https://openenergymonitor.org/" target="_blank">Open Energy Monitor</a>
+            <span class="resource-type">project</span>
+          </div>
+          <p class="resource-desc">Open source energy monitoring tools for homes and communities.</p>
+          <div class="resource-tags"><span>energy</span><span>monitoring</span><span>IoT</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Low Tech -->
+    <section class="category" id="lowtech">
+      <div class="category-header">
+        <span>🏗️</span>
+        <h3>Low-Tech & Appropriate Technology</h3>
+        <button class="category-toggle" onclick="toggleCategory(this)">collapse</button>
+      </div>
+      <div class="resource-grid">
+        <div class="resource" data-tags="tutorials low-tech open-source france">
+          <div class="resource-title">
+            <a href="https://lowtechlab.org/en" target="_blank">Low-tech Lab</a>
+            <span class="resource-type">library</span>
+          </div>
+          <p class="resource-desc">50+ documented low-tech solutions under Creative Commons. Solar cookers, water filters, biogas.</p>
+          <div class="resource-tags"><span>tutorials</span><span>low-tech</span><span>France</span></div>
+        </div>
+        <div class="resource" data-tags="articles solar history">
+          <div class="resource-title">
+            <a href="https://solar.lowtechmagazine.com/" target="_blank">Low-tech Magazine</a>
+            <span class="resource-type">education</span>
+          </div>
+          <p class="resource-desc">Solar-powered website about sustainable energy and forgotten innovations.</p>
+          <div class="resource-tags"><span>solar</span><span>articles</span><span>history</span></div>
+        </div>
+        <div class="resource" data-tags="housing off-grid recycled">
+          <div class="resource-title">
+            <a href="https://earthshipglobal.com/" target="_blank">Earthship Biotecture</a>
+            <span class="resource-type">project</span>
+          </div>
+          <p class="resource-desc">Off-grid homes from recycled materials. Passive solar, rainwater, food production built-in.</p>
+          <div class="resource-tags"><span>housing</span><span>off-grid</span><span>recycled</span></div>
+        </div>
+        <div class="resource" data-tags="wiki appropriate-tech knowledge">
+          <div class="resource-title">
+            <a href="https://www.appropedia.org/" target="_blank">Appropedia</a>
+            <span class="resource-type">library</span>
+          </div>
+          <p class="resource-desc">The sustainability wiki — thousands of pages on appropriate technology and green living.</p>
+          <div class="resource-tags"><span>wiki</span><span>appropriate-tech</span></div>
+        </div>
+        <div class="resource" data-tags="development knowledge">
+          <div class="resource-title">
+            <a href="https://practicalaction.org/" target="_blank">Practical Action</a>
+            <span class="resource-type">library</span>
+          </div>
+          <p class="resource-desc">Technical solutions for poverty. Water, energy, food, shelter using appropriate tech.</p>
+          <div class="resource-tags"><span>development</span><span>knowledge</span></div>
+        </div>
+        <div class="resource" data-tags="computing sustainability philosophy">
+          <div class="resource-title">
+            <a href="https://permacomputing.net/" target="_blank">Permacomputing</a>
+            <span class="resource-type">education</span>
+          </div>
+          <p class="resource-desc">Applying permaculture principles to computing. Resilient, energy-efficient tech.</p>
+          <div class="resource-tags"><span>computing</span><span>sustainability</span></div>
+        </div>
+        <div class="resource" data-tags="solutions engineering library">
+          <div class="resource-title">
+            <a href="https://www.engineeringforchange.org/" target="_blank">Engineering for Change</a>
+            <span class="resource-type">library</span>
+          </div>
+          <p class="resource-desc">Solutions library — thousands of appropriate technology solutions.</p>
+          <div class="resource-tags"><span>engineering</span><span>solutions</span></div>
+        </div>
+        <div class="resource" data-tags="diy tutorials community">
+          <div class="resource-title">
+            <a href="https://www.instructables.com/howto/sustainability/" target="_blank">Instructables Sustainability</a>
+            <span class="resource-type">library</span>
+          </div>
+          <p class="resource-desc">DIY guides for sustainable living projects.</p>
+          <div class="resource-tags"><span>DIY</span><span>tutorials</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Permaculture -->
+    <section class="category" id="permaculture">
+      <div class="category-header">
+        <span>🌿</span>
+        <h3>Permaculture & Regenerative Agriculture</h3>
+        <button class="category-toggle" onclick="toggleCategory(this)">collapse</button>
+      </div>
+      <div class="resource-grid">
+        <div class="resource" data-tags="principles design education">
+          <div class="resource-title">
+            <a href="https://permacultureprinciples.com/" target="_blank">Permaculture Principles</a>
+            <span class="resource-type">education</span>
+          </div>
+          <p class="resource-desc">David Holmgren's 12 permaculture design principles. The foundation.</p>
+          <div class="resource-tags"><span>principles</span><span>design</span></div>
+        </div>
+        <div class="resource" data-tags="volunteering organic learning free">
+          <div class="resource-title">
+            <a href="https://wwoof.net/" target="_blank">WWOOF</a>
+            <span class="resource-type">community</span>
+          </div>
+          <p class="resource-desc">World Wide Opportunities on Organic Farms. Learn by doing — no money needed.</p>
+          <div class="resource-tags"><span>volunteering</span><span>organic</span><span>free</span></div>
+        </div>
+        <div class="resource" data-tags="food platform local">
+          <div class="resource-title">
+            <a href="https://www.openfoodnetwork.org/" target="_blank">Open Food Network</a>
+            <span class="resource-type">project</span>
+          </div>
+          <p class="resource-desc">Open source platform for local food systems. Connect farmers and consumers.</p>
+          <div class="resource-tags"><span>food</span><span>platform</span><span>local</span></div>
+        </div>
+        <div class="resource" data-tags="seeds heritage sharing">
+          <div class="resource-title">
+            <a href="https://www.seedsavers.org/" target="_blank">Seed Savers Exchange</a>
+            <span class="resource-type">community</span>
+          </div>
+          <p class="resource-desc">Protecting heirloom seed varieties through community seed sharing.</p>
+          <div class="resource-tags"><span>seeds</span><span>heritage</span></div>
+        </div>
+        <div class="resource" data-tags="seeds india food-sovereignty">
+          <div class="resource-title">
+            <a href="https://www.navdanya.org/" target="_blank">Navdanya</a>
+            <span class="resource-type">community</span>
+          </div>
+          <p class="resource-desc">Vandana Shiva's network of seed keepers across India. Seed freedom movement.</p>
+          <div class="resource-tags"><span>seeds</span><span>India</span></div>
+        </div>
+        <div class="resource" data-tags="regenerative global advocacy">
+          <div class="resource-title">
+            <a href="https://regenerationinternational.org/" target="_blank">Regeneration International</a>
+            <span class="resource-type">community</span>
+          </div>
+          <p class="resource-desc">Global network promoting regenerative agriculture practices.</p>
+          <div class="resource-tags"><span>regenerative</span><span>global</span></div>
+        </div>
+        <div class="resource" data-tags="list tech farming">
+          <div class="resource-title">
+            <a href="https://github.com/brycejohnston/awesome-agriculture" target="_blank">Awesome Agriculture</a>
+            <span class="resource-type">library</span>
+          </div>
+          <p class="resource-desc">Curated list of open source agriculture technology on GitHub.</p>
+          <div class="resource-tags"><span>list</span><span>tech</span><span>farming</span></div>
+        </div>
+        <div class="resource" data-tags="peasants movement global">
+          <div class="resource-title">
+            <a href="https://viacampesina.org/" target="_blank">La Via Campesina</a>
+            <span class="resource-type">community</span>
+          </div>
+          <p class="resource-desc">International peasant movement — 200 million farmers defending food sovereignty.</p>
+          <div class="resource-tags"><span>peasants</span><span>global</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Collectives -->
+    <section class="category" id="collectives">
+      <div class="category-header">
+        <span>🏘️</span>
+        <h3>Collectives, Communes & Ecovillages</h3>
+        <button class="category-toggle" onclick="toggleCategory(this)">collapse</button>
+      </div>
+      <div class="resource-grid">
+        <div class="resource" data-tags="ecovillages global network">
+          <div class="resource-title">
+            <a href="https://ecovillage.org/" target="_blank">Global Ecovillage Network</a>
+            <span class="resource-type">community</span>
+          </div>
+          <p class="resource-desc">Network of thousands of ecovillages worldwide. Map, directory, resources.</p>
+          <div class="resource-tags"><span>ecovillages</span><span>global</span></div>
+        </div>
+        <div class="resource" data-tags="directory communities global">
+          <div class="resource-title">
+            <a href="https://www.ic.org/directory/" target="_blank">Intentional Communities (ic.org)</a>
+            <span class="resource-type">map</span>
+          </div>
+          <p class="resource-desc">Largest directory — ecovillages, cohousing, communes, co-ops worldwide.</p>
+          <div class="resource-tags"><span>directory</span><span>communities</span></div>
+        </div>
+        <div class="resource" data-tags="map radical spaces">
+          <div class="resource-title">
+            <a href="https://www.yourradicalguide.com/" target="_blank">A Radical Guide</a>
+            <span class="resource-type">map</span>
+          </div>
+          <p class="resource-desc">1,200+ liberation spaces in 75 countries — infoshops, social centers, cooperatives.</p>
+          <div class="resource-tags"><span>map</span><span>radical</span><span>global</span></div>
+        </div>
+        <div class="resource" data-tags="india township moneyless">
+          <div class="resource-title">
+            <a href="https://auroville.org/" target="_blank">Auroville</a>
+            <span class="resource-type">community</span>
+          </div>
+          <p class="resource-desc">Universal township in India. 3,200 people from 60+ nations, no money between residents.</p>
+          <div class="resource-tags"><span>India</span><span>moneyless</span></div>
+        </div>
+        <div class="resource" data-tags="portugal peace water permaculture">
+          <div class="resource-title">
+            <a href="https://www.tamera.org/" target="_blank">Tamera</a>
+            <span class="resource-type">community</span>
+          </div>
+          <p class="resource-desc">Peace research village in Portugal. Permaculture, water retention, solar tech.</p>
+          <div class="resource-tags"><span>Portugal</span><span>peace</span><span>water</span></div>
+        </div>
+        <div class="resource" data-tags="spain cooperative village">
+          <div class="resource-title">
+            <a href="https://en.wikipedia.org/wiki/Marinaleda" target="_blank">Marinaleda</a>
+            <span class="resource-type">community</span>
+          </div>
+          <p class="resource-desc">Cooperative village in Spain. Communal land, near-zero unemployment, €15/month housing.</p>
+          <div class="resource-tags"><span>Spain</span><span>cooperative</span></div>
+        </div>
+        <div class="resource" data-tags="usa income-sharing egalitarian">
+          <div class="resource-title">
+            <a href="https://www.twinoaks.org/" target="_blank">Twin Oaks</a>
+            <span class="resource-type">community</span>
+          </div>
+          <p class="resource-desc">Income-sharing community in Virginia since 1967. Collective ownership, shared labor.</p>
+          <div class="resource-tags"><span>USA</span><span>income-sharing</span></div>
+        </div>
+        <div class="resource" data-tags="cooperative europe self-managed">
+          <div class="resource-title">
+            <a href="https://www.prolongomai.ch/" target="_blank">Longo Maï</a>
+            <span class="resource-type">community</span>
+          </div>
+          <p class="resource-desc">Network of self-managed cooperatives across Europe since 1973.</p>
+          <div class="resource-tags"><span>Europe</span><span>cooperative</span></div>
+        </div>
+        <div class="resource" data-tags="spain post-capitalist tech">
+          <div class="resource-title">
+            <a href="https://calafou.org/" target="_blank">Calafou</a>
+            <span class="resource-type">community</span>
+          </div>
+          <p class="resource-desc">Post-capitalist eco-industrial colony near Barcelona. Tech + ecology + social change.</p>
+          <div class="resource-tags"><span>Spain</span><span>tech</span></div>
+        </div>
+        <div class="resource" data-tags="mexico autonomous indigenous">
+          <div class="resource-title">
+            <a href="https://schoolsforchiapas.org/" target="_blank">Zapatista Communities</a>
+            <span class="resource-type">community</span>
+          </div>
+          <p class="resource-desc">Indigenous autonomous communities in Chiapas with self-governance and collective farming.</p>
+          <div class="resource-tags"><span>Mexico</span><span>autonomous</span></div>
+        </div>
+        <div class="resource" data-tags="syria confederalism ecology">
+          <div class="resource-title">
+            <a href="https://internationalistcommune.com/" target="_blank">Rojava</a>
+            <span class="resource-type">community</span>
+          </div>
+          <p class="resource-desc">Democratic confederalism — communal economy, ecology, feminist governance at scale.</p>
+          <div class="resource-tags"><span>Syria</span><span>confederalism</span></div>
+        </div>
+        <div class="resource" data-tags="spain worker-owned cooperative">
+          <div class="resource-title">
+            <a href="https://www.mondragon-corporation.com/" target="_blank">Mondragon Corporation</a>
+            <span class="resource-type">community</span>
+          </div>
+          <p class="resource-desc">World's largest worker-owned cooperative. 80+ co-ops, 80,000 workers in Basque Country.</p>
+          <div class="resource-tags"><span>Spain</span><span>worker-owned</span></div>
+        </div>
+        <div class="resource" data-tags="women syria feminist">
+          <div class="resource-title">
+            <a href="https://womeninrojava.net/jinwar/" target="_blank">Jinwar</a>
+            <span class="resource-type">community</span>
+          </div>
+          <p class="resource-desc">Women's village in Rojava. Ecological, self-sufficient, women-only community.</p>
+          <div class="resource-tags"><span>Syria</span><span>women</span><span>feminist</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Legal -->
+    <section class="category" id="legal">
+      <div class="category-header">
+        <span>⚖️</span>
+        <h3>Legal Frameworks & Collective Ownership</h3>
+        <button class="category-toggle" onclick="toggleCategory(this)">collapse</button>
+      </div>
+      <div class="resource-grid">
+        <div class="resource" data-tags="clt land legal usa">
+          <div class="resource-title">
+            <a href="https://cltweb.org/" target="_blank">Community Land Trust Network</a>
+            <span class="resource-type">legal</span>
+          </div>
+          <p class="resource-desc">Land owned by nonprofit, housing by residents. Permanent affordability. 300+ CLTs in US.</p>
+          <div class="resource-tags"><span>CLT</span><span>land</span><span>USA</span></div>
+        </div>
+        <div class="resource" data-tags="germany housing syndicate">
+          <div class="resource-title">
+            <a href="https://www.syndikat.org/" target="_blank">Mietshäuser Syndikat</a>
+            <span class="resource-type">legal</span>
+          </div>
+          <p class="resource-desc">German housing syndicate — 180+ buildings owned collectively, can never be sold.</p>
+          <div class="resource-tags"><span>Germany</span><span>housing</span></div>
+        </div>
+        <div class="resource" data-tags="france farmland collective">
+          <div class="resource-title">
+            <a href="https://terredeliens.org/" target="_blank">Terre de Liens</a>
+            <span class="resource-type">legal</span>
+          </div>
+          <p class="resource-desc">French org buying farmland collectively. Land stays out of speculation forever.</p>
+          <div class="resource-tags"><span>France</span><span>farmland</span></div>
+        </div>
+        <div class="resource" data-tags="uk co-ops mutual-aid">
+          <div class="resource-title">
+            <a href="https://www.radicalroutes.org.uk/" target="_blank">Radical Routes</a>
+            <span class="resource-type">legal</span>
+          </div>
+          <p class="resource-desc">UK network of housing co-ops, worker co-ops, social centres. Mutual aid lending.</p>
+          <div class="resource-tags"><span>UK</span><span>co-ops</span></div>
+        </div>
+        <div class="resource" data-tags="belgium clt template">
+          <div class="resource-title">
+            <a href="https://cltb.be/" target="_blank">Brussels CLT</a>
+            <span class="resource-type">legal</span>
+          </div>
+          <p class="resource-desc">Pioneering CLT in Belgium. Tripartite governance model. Template for Europe.</p>
+          <div class="resource-tags"><span>Belgium</span><span>CLT</span></div>
+        </div>
+        <div class="resource" data-tags="puerto-rico clt latin-america">
+          <div class="resource-title">
+            <a href="https://cfrpr.org/" target="_blank">Caño Martín Peña CLT</a>
+            <span class="resource-type">legal</span>
+          </div>
+          <p class="resource-desc">CLT protecting 2,000+ families. Model for Latin American civil law countries.</p>
+          <div class="resource-tags"><span>Puerto Rico</span><span>CLT</span></div>
+        </div>
+        <div class="resource" data-tags="brazil favela clt">
+          <div class="resource-title">
+            <a href="https://termoterritorialcoletivo.org/" target="_blank">Favela CLT (Brazil)</a>
+            <span class="resource-type">legal</span>
+          </div>
+          <p class="resource-desc">First CLT law in Brazil (2021). Pilot projects in Rio favelas.</p>
+          <div class="resource-tags"><span>Brazil</span><span>favela</span><span>CLT</span></div>
+        </div>
+        <div class="resource" data-tags="global cooperative legal">
+          <div class="resource-title">
+            <a href="https://www.ica.coop/" target="_blank">International Cooperative Alliance</a>
+            <span class="resource-type">legal</span>
+          </div>
+          <p class="resource-desc">Legal frameworks for cooperatives recognized in virtually every country.</p>
+          <div class="resource-tags"><span>global</span><span>cooperative</span></div>
+        </div>
+        <div class="resource" data-tags="commons policy transition">
+          <div class="resource-title">
+            <a href="https://commonstransition.org/" target="_blank">Commons Transition</a>
+            <span class="resource-type">legal</span>
+          </div>
+          <p class="resource-desc">Policy frameworks and strategies for commons-based governance and economy.</p>
+          <div class="resource-tags"><span>commons</span><span>policy</span></div>
+        </div>
+        <div class="resource" data-tags="clt global innovation">
+          <div class="resource-title">
+            <a href="https://cltweb.org/resources/international/" target="_blank">CLT Global Directory</a>
+            <span class="resource-type">map</span>
+          </div>
+          <p class="resource-desc">Center for CLT Innovation — CLTs and related orgs worldwide.</p>
+          <div class="resource-tags"><span>CLT</span><span>global</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Moneyless -->
+    <section class="category" id="moneyless">
+      <div class="category-header">
+        <span>🤝</span>
+        <h3>Beyond Money: Gift Economy & Alternatives</h3>
+        <button class="category-toggle" onclick="toggleCategory(this)">collapse</button>
+      </div>
+      <div class="resource-grid">
+        <div class="resource" data-tags="gift-economy local sharing">
+          <div class="resource-title">
+            <a href="https://buynothingproject.org/" target="_blank">Buy Nothing Project</a>
+            <span class="resource-type">community</span>
+          </div>
+          <p class="resource-desc">Global gift economy. Local groups where everything is freely given. No money, no trades.</p>
+          <div class="resource-tags"><span>gift-economy</span><span>local</span></div>
+        </div>
+        <div class="resource" data-tags="reuse free global">
+          <div class="resource-title">
+            <a href="https://www.freecycle.org/" target="_blank">Freecycle Network</a>
+            <span class="resource-type">community</span>
+          </div>
+          <p class="resource-desc">9M+ members giving and getting stuff for free worldwide.</p>
+          <div class="resource-tags"><span>reuse</span><span>free</span><span>global</span></div>
+        </div>
+        <div class="resource" data-tags="mutual-aid directory solidarity">
+          <div class="resource-title">
+            <a href="https://www.mutualaidhub.org/" target="_blank">Mutual Aid Hub</a>
+            <span class="resource-type">map</span>
+          </div>
+          <p class="resource-desc">Directory of mutual aid networks. Neighbors helping neighbors without money.</p>
+          <div class="resource-tags"><span>mutual-aid</span><span>directory</span></div>
+        </div>
+        <div class="resource" data-tags="time-currency exchange equality">
+          <div class="resource-title">
+            <a href="https://timebanks.org/" target="_blank">Timebanking</a>
+            <span class="resource-type">tool</span>
+          </div>
+          <p class="resource-desc">Exchange services using time as currency — everyone's hour is equal.</p>
+          <div class="resource-tags"><span>time-currency</span><span>exchange</span></div>
+        </div>
+        <div class="resource" data-tags="rbe vision technology">
+          <div class="resource-title">
+            <a href="https://www.thevenusproject.com/" target="_blank">The Venus Project</a>
+            <span class="resource-type">education</span>
+          </div>
+          <p class="resource-desc">Resource-based economy concept. All goods available when we manage resources intelligently.</p>
+          <div class="resource-tags"><span>RBE</span><span>vision</span></div>
+        </div>
+        <div class="resource" data-tags="sharing tools access">
+          <div class="resource-title">
+            <a href="https://www.libraryofthings.co.uk/" target="_blank">Library of Things</a>
+            <span class="resource-type">community</span>
+          </div>
+          <p class="resource-desc">Borrow tools and equipment instead of buying. Access over ownership.</p>
+          <div class="resource-tags"><span>sharing</span><span>tools</span></div>
+        </div>
+        <div class="resource" data-tags="book philosophy gift-economy">
+          <div class="resource-title">
+            <a href="https://sacred-economics.com/" target="_blank">Sacred Economics</a>
+            <span class="resource-type">education</span>
+          </div>
+          <p class="resource-desc">Charles Eisenstein on gift economy and transitioning beyond growth economics. Free online.</p>
+          <div class="resource-tags"><span>book</span><span>philosophy</span></div>
+        </div>
+        <div class="resource" data-tags="circular open-source economy">
+          <div class="resource-title">
+            <a href="https://oscedays.org/" target="_blank">Open Source Circular Economy</a>
+            <span class="resource-type">community</span>
+          </div>
+          <p class="resource-desc">Global community developing open source solutions for circular economy.</p>
+          <div class="resource-tags"><span>circular</span><span>open-source</span></div>
+        </div>
+        <div class="resource" data-tags="solidarity global cooperatives">
+          <div class="resource-title">
+            <a href="https://ripess.org/" target="_blank">RIPESS</a>
+            <span class="resource-type">community</span>
+          </div>
+          <p class="resource-desc">International network for solidarity economy — cooperatives, fair trade, social currencies.</p>
+          <div class="resource-tags"><span>solidarity</span><span>global</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Funding -->
+    <section class="category" id="funding">
+      <div class="category-header">
+        <span>🌍</span>
+        <h3>Funding, Land Access & Getting Started</h3>
+        <button class="category-toggle" onclick="toggleCategory(this)">collapse</button>
+      </div>
+      <div class="resource-grid">
+        <div class="resource" data-tags="europe land-access guides">
+          <div class="resource-title">
+            <a href="https://www.accesstoland.eu/" target="_blank">Access to Land (Europe)</a>
+            <span class="resource-type">tool</span>
+          </div>
+          <p class="resource-desc">European network helping new farmers access land. Country-by-country guides.</p>
+          <div class="resource-tags"><span>Europe</span><span>land-access</span></div>
+        </div>
+        <div class="resource" data-tags="uk smallholdings shares">
+          <div class="resource-title">
+            <a href="https://ecologicalland.coop/" target="_blank">Ecological Land Cooperative</a>
+            <span class="resource-type">tool</span>
+          </div>
+          <p class="resource-desc">UK org buying farmland, creating affordable ecological smallholdings. Community shares.</p>
+          <div class="resource-tags"><span>UK</span><span>smallholdings</span></div>
+        </div>
+        <div class="resource" data-tags="crowdfunding microloans global">
+          <div class="resource-title">
+            <a href="https://www.kiva.org/" target="_blank">Kiva</a>
+            <span class="resource-type">tool</span>
+          </div>
+          <p class="resource-desc">Crowdfunded microloans for community projects. No interest, community-backed.</p>
+          <div class="resource-tags"><span>crowdfunding</span><span>microloans</span></div>
+        </div>
+        <div class="resource" data-tags="uk shares investment">
+          <div class="resource-title">
+            <a href="https://communityshares.org.uk/" target="_blank">Community Shares</a>
+            <span class="resource-type">tool</span>
+          </div>
+          <p class="resource-desc">UK model — raise investment through withdrawable shares. Pubs, farms, energy co-ops.</p>
+          <div class="resource-tags"><span>UK</span><span>shares</span></div>
+        </div>
+        <div class="resource" data-tags="guides starting community">
+          <div class="resource-title">
+            <a href="https://www.ic.org/community-bookstore/" target="_blank">FIC Guides & Books</a>
+            <span class="resource-type">education</span>
+          </div>
+          <p class="resource-desc">Resources and how-to guides for starting or joining intentional communities.</p>
+          <div class="resource-tags"><span>guides</span><span>starting</span></div>
+        </div>
+        <div class="resource" data-tags="europe funding policy">
+          <div class="resource-title">
+            <a href="https://www.ecolise.eu/" target="_blank">ECOLISE</a>
+            <span class="resource-type">community</span>
+          </div>
+          <p class="resource-desc">European network connecting community initiatives with funding and policy support.</p>
+          <div class="resource-tags"><span>Europe</span><span>funding</span></div>
+        </div>
+        <div class="resource" data-tags="economics clt guides">
+          <div class="resource-title">
+            <a href="https://centerforneweconomics.org/" target="_blank">Schumacher Center</a>
+            <span class="resource-type">education</span>
+          </div>
+          <p class="resource-desc">Resources on CLTs, local currencies, new economic models.</p>
+          <div class="resource-tags"><span>economics</span><span>CLT</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Energy -->
+    <section class="category" id="energy">
+      <div class="category-header">
+        <span>☀️</span>
+        <h3>Off-Grid & Renewable Energy</h3>
+        <button class="category-toggle" onclick="toggleCategory(this)">collapse</button>
+      </div>
+      <div class="resource-grid">
+        <div class="resource" data-tags="list energy curated">
+          <div class="resource-title">
+            <a href="https://github.com/OpenEnergyPlatform/awesome-sustainable-technology" target="_blank">Awesome Sustainable Tech</a>
+            <span class="resource-type">library</span>
+          </div>
+          <p class="resource-desc">Massive curated list of open source renewable energy and climate tech.</p>
+          <div class="resource-tags"><span>list</span><span>energy</span><span>GitHub</span></div>
+        </div>
+        <div class="resource" data-tags="wind local manufacturing">
+          <div class="resource-title">
+            <a href="https://windempowerment.org/" target="_blank">WindEmpowerment</a>
+            <span class="resource-type">community</span>
+          </div>
+          <p class="resource-desc">Network for locally manufactured small wind turbines. Open designs, training.</p>
+          <div class="resource-tags"><span>wind</span><span>local</span></div>
+        </div>
+        <div class="resource" data-tags="solar diy heating">
+          <div class="resource-title">
+            <a href="https://www.builditsolar.com/" target="_blank">Build It Solar</a>
+            <span class="resource-type">library</span>
+          </div>
+          <p class="resource-desc">DIY solar projects — water heating, space heating, cooking. Detailed plans.</p>
+          <div class="resource-tags"><span>solar</span><span>DIY</span><span>heating</span></div>
+        </div>
+        <div class="resource" data-tags="biogas low-tech tutorial">
+          <div class="resource-title">
+            <a href="https://lowtechlab.org/en/inventions/biodigester" target="_blank">Biodigester (Low-tech Lab)</a>
+            <span class="resource-type">tool</span>
+          </div>
+          <p class="resource-desc">Turn food waste into cooking gas and fertilizer. Full tutorial.</p>
+          <div class="resource-tags"><span>biogas</span><span>low-tech</span></div>
+        </div>
+        <div class="resource" data-tags="power modular open-source">
+          <div class="resource-title">
+            <a href="https://wiki.opensourceecology.org/wiki/Power_Cube" target="_blank">Power Cube (OSE)</a>
+            <span class="resource-type">project</span>
+          </div>
+          <p class="resource-desc">Modular open-source power unit. Hydraulic power for multiple machines.</p>
+          <div class="resource-tags"><span>power</span><span>modular</span></div>
+        </div>
+        <div class="resource" data-tags="solar portable generator">
+          <div class="resource-title">
+            <a href="https://sunzilla.de/" target="_blank">SunZilla</a>
+            <span class="resource-type">project</span>
+          </div>
+          <p class="resource-desc">Open source portable solar power generator. Modular system anyone can build.</p>
+          <div class="resource-tags"><span>solar</span><span>portable</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Water -->
+    <section class="category" id="water">
+      <div class="category-header">
+        <span>💧</span>
+        <h3>Water Systems & Rainwater Harvesting</h3>
+        <button class="category-toggle" onclick="toggleCategory(this)">collapse</button>
+      </div>
+      <div class="resource-grid">
+        <div class="resource" data-tags="rainwater open-source tutorial">
+          <div class="resource-title">
+            <a href="https://onecommunityglobal.org/water-conservation/" target="_blank">One Community Water Portal</a>
+            <span class="resource-type">library</span>
+          </div>
+          <p class="resource-desc">Open source rainwater catchment, filtration, and conservation systems.</p>
+          <div class="resource-tags"><span>rainwater</span><span>open-source</span></div>
+        </div>
+        <div class="resource" data-tags="water-filter diy low-tech">
+          <div class="resource-title">
+            <a href="https://lowtechlab.org/en/inventions/water-filter" target="_blank">Water Filter (Low-tech Lab)</a>
+            <span class="resource-type">tool</span>
+          </div>
+          <p class="resource-desc">Build a ceramic water filter. Open source tutorial.</p>
+          <div class="resource-tags"><span>water-filter</span><span>DIY</span></div>
+        </div>
+        <div class="resource" data-tags="greywater recycling">
+          <div class="resource-title">
+            <a href="https://www.appropedia.org/Greywater" target="_blank">Greywater Systems (Appropedia)</a>
+            <span class="resource-type">library</span>
+          </div>
+          <p class="resource-desc">How to recycle household water for gardens. Multiple system designs.</p>
+          <div class="resource-tags"><span>greywater</span><span>recycling</span></div>
+        </div>
+        <div class="resource" data-tags="water landscape portugal">
+          <div class="resource-title">
+            <a href="https://www.tamera.org/water-retention-landscape/" target="_blank">Water Retention Landscapes</a>
+            <span class="resource-type">education</span>
+          </div>
+          <p class="resource-desc">Tamera's method for healing water cycles. Lakes, swales, aquifer recharge.</p>
+          <div class="resource-tags"><span>water</span><span>landscape</span><span>Portugal</span></div>
+        </div>
+        <div class="resource" data-tags="fog-catching water">
+          <div class="resource-title">
+            <a href="https://www.appropedia.org/Fog_collection" target="_blank">Fog Collection</a>
+            <span class="resource-type">library</span>
+          </div>
+          <p class="resource-desc">Harvesting water from fog in arid regions. Simple net systems.</p>
+          <div class="resource-tags"><span>fog-catching</span><span>arid</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="category" id="education">
+      <div class="category-header">
+        <span>📚</span>
+        <h3>Education, Books, Films & Media</h3>
+        <button class="category-toggle" onclick="toggleCategory(this)">collapse</button>
+      </div>
+      <div class="resource-grid">
+        <div class="resource" data-tags="film solutions global">
+          <div class="resource-title">
+            <a href="https://www.tomorrow-documentary.com/" target="_blank">Tomorrow (Demain)</a>
+            <span class="resource-type">video</span>
+          </div>
+          <p class="resource-desc">French documentary exploring solutions in agriculture, energy, economy worldwide.</p>
+          <div class="resource-tags"><span>film</span><span>solutions</span></div>
+        </div>
+        <div class="resource" data-tags="film permaculture usa">
+          <div class="resource-title">
+            <a href="https://inhabitfilm.com/" target="_blank">Inhabit</a>
+            <span class="resource-type">video</span>
+          </div>
+          <p class="resource-desc">Documentary on permaculture projects across the US — urban farms to food forests.</p>
+          <div class="resource-tags"><span>film</span><span>permaculture</span></div>
+        </div>
+        <div class="resource" data-tags="film localization economics">
+          <div class="resource-title">
+            <a href="https://www.localfutures.org/economics-of-happiness/" target="_blank">Economics of Happiness</a>
+            <span class="resource-type">video</span>
+          </div>
+          <p class="resource-desc">Costs of globalization, benefits of localization. Available in 26 languages.</p>
+          <div class="resource-tags"><span>film</span><span>localization</span></div>
+        </div>
+        <div class="resource" data-tags="library free anarchism">
+          <div class="resource-title">
+            <a href="https://theanarchistlibrary.org/" target="_blank">The Anarchist Library</a>
+            <span class="resource-type">library</span>
+          </div>
+          <p class="resource-desc">Massive free library of anarchist texts — theory, practice, history.</p>
+          <div class="resource-tags"><span>library</span><span>free</span></div>
+        </div>
+        <div class="resource" data-tags="book theory free">
+          <div class="resource-title">
+            <a href="https://theanarchistlibrary.org/library/petr-kropotkin-mutual-aid-a-factor-of-evolution" target="_blank">Mutual Aid (Kropotkin)</a>
+            <span class="resource-type">education</span>
+          </div>
+          <p class="resource-desc">Foundational text proving cooperation drives evolution. Free to read.</p>
+          <div class="resource-tags"><span>book</span><span>theory</span></div>
+        </div>
+        <div class="resource" data-tags="wiki p2p commons">
+          <div class="resource-title">
+            <a href="https://wiki.p2pfoundation.net/" target="_blank">P2P Foundation Wiki</a>
+            <span class="resource-type">library</span>
+          </div>
+          <p class="resource-desc">Encyclopedia of peer-to-peer, commons, and open source dynamics.</p>
+          <div class="resource-tags"><span>wiki</span><span>P2P</span><span>commons</span></div>
+        </div>
+        <div class="resource" data-tags="video permaculture courses">
+          <div class="resource-title">
+            <a href="https://www.geofflawton.com/" target="_blank">Geoff Lawton Videos</a>
+            <span class="resource-type">video</span>
+          </div>
+          <p class="resource-desc">Extensive permaculture courses and documentaries. Greening deserts, food forests.</p>
+          <div class="resource-tags"><span>video</span><span>permaculture</span></div>
+        </div>
+        <div class="resource" data-tags="movement transition community">
+          <div class="resource-title">
+            <a href="https://transitionnetwork.org/" target="_blank">Transition Network</a>
+            <span class="resource-type">community</span>
+          </div>
+          <p class="resource-desc">Communities reimagining the world. Guides, stories, 1,000+ initiatives.</p>
+          <div class="resource-tags"><span>movement</span><span>transition</span></div>
+        </div>
+        <div class="resource" data-tags="solarpunk manifesto vision">
+          <div class="resource-title">
+            <a href="https://solarpunks.net/manifesto/" target="_blank">Solarpunk Manifesto</a>
+            <span class="resource-type">education</span>
+          </div>
+          <p class="resource-desc">The aesthetic and philosophy of building a bright, green future.</p>
+          <div class="resource-tags"><span>solarpunk</span><span>manifesto</span></div>
+        </div>
+        <div class="resource" data-tags="book fiction anarchism">
+          <div class="resource-title">
+            <a href="https://en.wikipedia.org/wiki/The_Dispossessed" target="_blank">The Dispossessed (Le Guin)</a>
+            <span class="resource-type">education</span>
+          </div>
+          <p class="resource-desc">Sci-fi novel exploring anarcho-syndicalist society. Philosophical blueprint.</p>
+          <div class="resource-tags"><span>book</span><span>fiction</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tools -->
+    <section class="category" id="tools">
+      <div class="category-header">
+        <span>🤖</span>
+        <h3>AI, Digital Tools & Open Platforms</h3>
+        <button class="category-toggle" onclick="toggleCategory(this)">collapse</button>
+      </div>
+      <div class="resource-grid">
+        <div class="resource" data-tags="ai models community">
+          <div class="resource-title">
+            <a href="https://huggingface.co/" target="_blank">Hugging Face</a>
+            <span class="resource-type">tool</span>
+          </div>
+          <p class="resource-desc">Open source AI models for everyone. Community-driven AI.</p>
+          <div class="resource-tags"><span>AI</span><span>models</span></div>
+        </div>
+        <div class="resource" data-tags="ai local privacy">
+          <div class="resource-title">
+            <a href="https://ollama.com/" target="_blank">Ollama</a>
+            <span class="resource-type">tool</span>
+          </div>
+          <p class="resource-desc">Run AI models locally. No cloud, no surveillance, no subscription.</p>
+          <div class="resource-tags"><span>AI</span><span>local</span><span>privacy</span></div>
+        </div>
+        <div class="resource" data-tags="decision-making governance platform">
+          <div class="resource-title">
+            <a href="https://www.loomio.com/" target="_blank">Loomio</a>
+            <span class="resource-type">tool</span>
+          </div>
+          <p class="resource-desc">Collaborative decision-making platform for cooperatives and communities.</p>
+          <div class="resource-tags"><span>decision-making</span><span>governance</span></div>
+        </div>
+        <div class="resource" data-tags="maps open-data community">
+          <div class="resource-title">
+            <a href="https://www.openstreetmap.org/" target="_blank">OpenStreetMap</a>
+            <span class="resource-type">tool</span>
+          </div>
+          <p class="resource-desc">Community-built map of the world. Free, open data.</p>
+          <div class="resource-tags"><span>maps</span><span>open-data</span></div>
+        </div>
+        <div class="resource" data-tags="messaging encrypted decentralized">
+          <div class="resource-title">
+            <a href="https://element.io/" target="_blank">Element (Matrix)</a>
+            <span class="resource-type">tool</span>
+          </div>
+          <p class="resource-desc">Decentralized, encrypted messaging. Own your communication.</p>
+          <div class="resource-tags"><span>messaging</span><span>encrypted</span></div>
+        </div>
+        <div class="resource" data-tags="cloud self-hosted collaboration">
+          <div class="resource-title">
+            <a href="https://nextcloud.com/" target="_blank">Nextcloud</a>
+            <span class="resource-type">tool</span>
+          </div>
+          <p class="resource-desc">Self-hosted cloud — files, calendar, video calls on your own server.</p>
+          <div class="resource-tags"><span>cloud</span><span>self-hosted</span></div>
+        </div>
+        <div class="resource" data-tags="guides open-source contributing">
+          <div class="resource-title">
+            <a href="https://opensource.guide/" target="_blank">Open Source Guides</a>
+            <span class="resource-type">education</span>
+          </div>
+          <p class="resource-desc">How to contribute, maintain, and build open source projects.</p>
+          <div class="resource-tags"><span>guides</span><span>open-source</span></div>
+        </div>
+        <div class="resource" data-tags="forum community open-source">
+          <div class="resource-title">
+            <a href="https://www.discourse.org/" target="_blank">Discourse</a>
+            <span class="resource-type">tool</span>
+          </div>
+          <p class="resource-desc">Open source forum platform for community governance and knowledge sharing.</p>
+          <div class="resource-tags"><span>forum</span><span>community</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Maps -->
+    <section class="category" id="maps">
+      <div class="category-header">
+        <span>🗺️</span>
+        <h3>Maps & Directories</h3>
+        <button class="category-toggle" onclick="toggleCategory(this)">collapse</button>
+      </div>
+      <div class="resource-grid">
+        <div class="resource" data-tags="map ecovillages global">
+          <div class="resource-title">
+            <a href="https://ecovillage.org/ecovillages/map/" target="_blank">GEN Ecovillage Map</a>
+            <span class="resource-type">map</span>
+          </div>
+          <p class="resource-desc">Thousands of ecovillage projects worldwide on interactive map.</p>
+          <div class="resource-tags"><span>map</span><span>ecovillages</span></div>
+        </div>
+        <div class="resource" data-tags="directory communities search">
+          <div class="resource-title">
+            <a href="https://www.ic.org/directory/" target="_blank">ic.org Directory</a>
+            <span class="resource-type">map</span>
+          </div>
+          <p class="resource-desc">Search intentional communities by type, location, size, values.</p>
+          <div class="resource-tags"><span>directory</span><span>communities</span></div>
+        </div>
+        <div class="resource" data-tags="map alternative autonomous">
+          <div class="resource-title">
+            <a href="https://ecoclash.jimdofree.com/" target="_blank">Ecoclash</a>
+            <span class="resource-type">map</span>
+          </div>
+          <p class="resource-desc">Alternative living spaces, eco-communities, squats, autonomous projects.</p>
+          <div class="resource-tags"><span>map</span><span>alternative</span></div>
+        </div>
+        <div class="resource" data-tags="map transition local">
+          <div class="resource-title">
+            <a href="https://transitionnetwork.org/transition-near-me/" target="_blank">Transition Near Me</a>
+            <span class="resource-type">map</span>
+          </div>
+          <p class="resource-desc">Find transition initiatives near you — community responses to climate change.</p>
+          <div class="resource-tags"><span>map</span><span>transition</span></div>
+        </div>
+        <div class="resource" data-tags="map permaculture global">
+          <div class="resource-title">
+            <a href="https://permacultureglobal.org/" target="_blank">Permaculture Global</a>
+            <span class="resource-type">map</span>
+          </div>
+          <p class="resource-desc">Directory and map of permaculture projects and people worldwide.</p>
+          <div class="resource-tags"><span>map</span><span>permaculture</span></div>
+        </div>
+        <div class="resource" data-tags="map free-food foraging">
+          <div class="resource-title">
+            <a href="https://fallingfruit.org/" target="_blank">Falling Fruit</a>
+            <span class="resource-type">map</span>
+          </div>
+          <p class="resource-desc">Map of free food — fruit trees, nut trees, edible plants on public land.</p>
+          <div class="resource-tags"><span>map</span><span>free-food</span><span>foraging</span></div>
+        </div>
+        <div class="resource" data-tags="map free-food europe">
+          <div class="resource-title">
+            <a href="https://mundraub.org/" target="_blank">Mundraub</a>
+            <span class="resource-type">map</span>
+          </div>
+          <p class="resource-desc">Free fruit, herbs, nuts on public land. Germany and beyond.</p>
+          <div class="resource-tags"><span>map</span><span>free-food</span><span>Europe</span></div>
+        </div>
+        <div class="resource" data-tags="map radical spaces global">
+          <div class="resource-title">
+            <a href="https://www.yourradicalguide.com/" target="_blank">A Radical Guide</a>
+            <span class="resource-type">map</span>
+          </div>
+          <p class="resource-desc">1,200+ liberation spaces — infoshops, social centers, cooperatives, organizing spaces.</p>
+          <div class="resource-tags"><span>map</span><span>radical</span><span>global</span></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>🌱 <strong>Humanity OS</strong> — Open Source Resource Hub</p>
+    <p>No copyright. Only copyleft. <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></p>
+    <p><a href="https://github.com/l10n-h34r7/humanity-os-resource-hub">Contribute on GitHub</a> · Every link is a seed planted 🌱</p>
+  </footer>
+
+  <button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+  <script>
+    // Dark mode toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const savedTheme = localStorage.getItem('theme');
+    
+    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      themeToggle.textContent = '☀️ Light';
+    }
+    
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+        themeToggle.textContent = '🌙 Dark';
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        themeToggle.textContent = '☀️ Light';
+      }
+    });
+
+    // Search
+    const searchInput = document.getElementById('search');
+    const resources = document.querySelectorAll('.resource');
+    const categories = document.querySelectorAll('.category');
+    
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase().trim();
+      
+      resources.forEach(resource => {
+        const title = resource.querySelector('.resource-title a').textContent.toLowerCase();
+        const desc = resource.querySelector('.resource-desc').textContent.toLowerCase();
+        const tags = resource.dataset.tags || '';
+        
+        if (!query || title.includes(query) || desc.includes(query) || tags.includes(query)) {
+          resource.classList.remove('hidden');
+        } else {
+          resource.classList.add('hidden');
+        }
+      });
+      
+      // Hide empty categories
+      categories.forEach(category => {
+        const visibleResources = category.querySelectorAll('.resource:not(.hidden)');
+        if (query && visibleResources.length === 0) {
+          category.classList.add('hidden');
+        } else {
+          category.classList.remove('hidden');
+        }
+      });
+    });
+
+    // Category collapse toggle
+    function toggleCategory(btn) {
+      const grid = btn.closest('.category').querySelector('.resource-grid');
+      if (grid.style.display === 'none') {
+        grid.style.display = '';
+        btn.textContent = 'collapse';
+      } else {
+        grid.style.display = 'none';
+        btn.textContent = 'expand';
+      }
+    }
+
+    // Back to top button
+    const backTop = document.getElementById('back-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        backTop.classList.add('show');
+      } else {
+        backTop.classList.remove('show');
+      }
+    }, { passive: true });
+  </script>
+</body>
+</html>
